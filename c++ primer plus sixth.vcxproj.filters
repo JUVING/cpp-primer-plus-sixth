@@ -35,5 +35,14 @@
     <ClCompile Include="c++ 06.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="c++ 07.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="c++ 08.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="c++ 09.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
