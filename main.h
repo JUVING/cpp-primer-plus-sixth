@@ -17,7 +17,7 @@
 #include <typeinfo>
 #include <cctype>
 #include <memory>
-
+#include <algorithm>
 #define _CRT_SECURE_NO_WARNINGS
 using namespace std;
 

@@ -304,3 +304,106 @@ void showReview(const Review& rr)
 {
 	cout << rr.rating << "\t" << rr.titles << endl;
 }*/
+
+
+/*
+//vwct3.cpp 16-9 (1254pg)
+struct Review
+{
+	string titles;
+	int rating;
+};
+bool operator<(const Review& r1, const Review& r2);
+bool woreThan(const Review& r1, const Review& r2);
+bool FillReview(Review& rr);
+void showReview(const Review& rr);
+
+int main()
+{
+	vector<Review>books;
+	Review temp;
+	while (FillReview(temp))
+		books.push_back(temp);
+	
+	if (books.size() > 0)
+	{
+		cout << "감사합니다. 당신은 다음과 같이 " << books.size() << "개의 책 등급을 입력하셨습니다.\n" << "등급\t제목\n";
+
+		for_each(books.begin(),books.end(),showReview);
+		
+		sort(books.begin(), books.end());
+		cout << "책 제목을 기준으로 정렬:\n등급\t제목\n";
+		for_each(books.begin(), books.end(), showReview);
+
+		sort(books.begin(), books.end());
+		cout << "책 등급을 기준으로 정렬:\n등급\t제목\n";
+		for_each(books.begin(), books.end(), showReview);
+
+		random_shuffle(books.begin(), books.end());
+		cout << "무작위 순서로 다시 배치:\n등급\t제목\n";
+		for_each(books.begin(), books.end(), showReview);
+	}
+	else
+		cout << "프로그램을 종료합니다.\n";
+	return 0;
+}
+bool operator<(const Review& r1, const Review& r2)
+{
+	if (r1.titles < r2.titles)
+		return true;
+	else if (r1.titles == r2.titles && r1.titles < r2.titles)
+		return true;
+	else
+		return false;
+}
+bool woreThan(const Review& r1, const Review& r2)
+{
+	if (r1.titles < r2.titles)
+		return true;
+	else
+		return false;
+}
+
+bool FillReview(Review& rr)
+{
+	cout << "책 제목을 입력하십시오(끝내려면 quit를 입력): ";
+	getline(cin, rr.titles);
+	if (rr.titles == "quit")
+		return false;
+	cout << "번 책의 등급(0~10)을 입력하십시오 : ";
+	cin >> rr.rating;
+	if (!cin)
+		return false;
+	while (cin.get() != '\n')
+		continue;
+	return true;
+}
+void showReview(const Review& rr)
+{
+	cout << rr.rating << "\t" << rr.titles << endl;
+}*/
+
+
+
+/*
+//copyit.cpp 16-10 (1274pg)
+int main()
+{
+	int casts[10] = { 6,7,2,9,4,11,8,7,10,5 };
+	vector<int>dice(10);
+	copy(casts, casts + 10, dice.begin());
+	cout << "주사위를 던져라\n";
+	ostream_iterator<int, char> out_iter(cout, " ");
+	copy(dice.begin(), dice.end(), out_iter);
+	cout << endl;
+	cout << "역방향 이터레이터 사용 암시적 사용: \n";
+	copy(dice.rbegin(), dice.rend(), out_iter);
+	cout << endl;
+	cout << "역방향 이터레이터 사용 명시적 사용: \n";
+	vector<int>::reverse_iterator ri;
+	for (ri = dice.rbegin(); ri != dice.rend(); ++ri)
+		cout << *ri << ' ';
+	cout << endl;
+
+	return 0;
+}*/
