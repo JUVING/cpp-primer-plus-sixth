@@ -483,4 +483,84 @@ int main()
 
 
 
+/*
+//setops.cpp 16-13 (1295pg)
+int main()
+{
+	const int N = 6;
+	string s1[N] = { "buffoon","thinkers","for","heavy","can","for" };
+	string s2[N] = { "metal","any","food","elegant","deliver","for" };
 
+	set<string>A(s1, s1 + N);
+	set<string>B(s2, s2 + N);
+
+	ostream_iterator<string, char>out(cout, " ");
+	cout << "집합 A:";
+	copy(A.begin(), A.end(), out);
+	cout << "집합 B:";
+	copy(B.begin(), B.end(), out);
+	cout << endl;
+
+	cout << "A와 B의 합집합:\n";
+	set_union(A.begin(), A.end(), B.begin(), B.end(), out);
+	cout << endl;
+
+	cout << "A와 B의 교집합:\n";
+	set_intersection(A.begin(), A.end(), B.begin(), B.end(), out);
+	cout << endl;
+
+	cout << "A와 B의 차집합:\n";
+	set_difference(A.begin(), A.end(), B.begin(), B.end(), out);
+	cout << endl;
+
+	set<string>c;
+	cout << "집합 C:\n";
+	set_union(A.begin(), A.end(), B.begin(), B.end(), insert_iterator<set<string>>(c,c.begin()));
+	copy(c.begin(), c.end(), out);
+	cout << endl;
+
+	string s3("grungy"); 
+	c.insert(s3);
+	cout << "삽입한 후의 집합 c:\n";
+	copy(c.begin(), c.end(), out);
+	cout << endl;
+	cout << "특정 범위를 표시:\n";
+	copy(c.lower_bound("ghost"), c.upper_bound("spook"), out);
+	cout << endl;
+
+	return 0;
+}*/
+
+
+
+/*
+//multmap.cpp 16-14 (1299pg)
+typedef int KeyType;
+typedef std::pair <const KeyType, std::string>Pair;
+typedef std::multimap<KeyType, std::string>Mapcode;
+
+int main()
+{
+	Mapcode codes;
+
+	codes.insert(Pair(415, "샌프란시스코"));
+	codes.insert(Pair(510, "오클랜드"));
+	codes.insert(Pair(718, "브루클린"));
+	codes.insert(Pair(718, "스태튼 섬"));
+	codes.insert(Pair(415, "샌라파엘"));
+	codes.insert(Pair(510, "버클리"));
+
+	cout << "지역코드 415인 도시 수: " << codes.count(415) << endl;
+	cout << "지역코드 718인 도시 수: " << codes.count(718) << endl;
+	cout << "지역코드 510인 도시 수: " << codes.count(510) << endl;
+	cout << "지역 코드    도시\n";
+	Mapcode::iterator it;
+	for (it = codes.begin(); it != codes.end(); ++it)
+		cout << "    " << (*it).first << "    " << (*it).second << endl;
+	pair<Mapcode::iterator, Mapcode::iterator>range = codes.equal_range(718);
+	cout << "지역코드 718인 도시들: \n";
+	for (it = range.first; it != range.second; ++it)
+		cout << (*it).second << endl;
+
+	return 0
+}*/

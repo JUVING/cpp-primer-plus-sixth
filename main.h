@@ -19,6 +19,10 @@
 #include <memory>
 #include <algorithm>
 #include <list>
+#include <set>
+#include<iterator>
+#include<map>
+
 #define _CRT_SECURE_NO_WARNINGS
 using namespace std;
 
