@@ -407,3 +407,80 @@ int main()
 
 	return 0;
 }*/
+
+
+
+/*
+//inserts.cpp 16-11 (1277pg)
+void output(const string& s) { cout << s<<" "; }
+
+int main()
+{
+	string s1[4] = { "fine","fish","fashion","fate" };
+	string s2[2] = { "busy","bats" };
+	string s3[2] = { "silly","singers" };
+	vector<string>words(4);
+	copy(s1, s1 + 4, words.begin());
+	for_each(words.begin(), words.end(), output);
+	cout << endl;
+
+	copy(s2, s2 + 2, back_insert_iterator<vector<string>>(words));
+	for_each(words.begin(), words.end(), output);
+	cout << endl;
+
+	copy(s3, s3 + 2, insert_iterator<vector<string>>(words, words.begin()));
+	for_each(words.begin(), words.end(), output);
+	cout << endl;
+
+	return 0;
+}*/
+
+
+
+
+/*
+//list.cpp 16-12 (1287pg)
+void outint(int n) { cout << n << " "; }
+int main()
+{
+	list<int>one(5, 2);
+	int stuff[5] = { 1,2,4,8,6 };
+	list<int>two;
+	two.insert(two.begin(), stuff, stuff + 5);
+	int more[6] = { 6,4,2,4,6,5 };
+	list<int>three(two);
+	three.insert(three.end(), more, more + 6);
+
+	cout << "리스트 one: ";
+	for_each(one.begin(), one.end(), outint);
+	cout << "리스트 two: ";
+	for_each(two.begin(), two.end(), outint);
+	cout << "리스트 three: ";
+	for_each(three.begin(), three.end(), outint);
+	three.remove(2);
+	cout << endl << "리스트 three에서 2들을 삭제: ";
+	for_each(three.begin(), three.end(), outint);
+	three.splice(three.begin(), one);
+	cout << endl << "접목 후의 리스트 three ";
+	for_each(three.begin(), three.end(), outint);
+	cout << endl << "리스트 one: ";
+	for_each(one.begin(), one.end(), outint);
+	three.unique();
+	cout << endl << "단일화 후의 리스트 three: ";
+	for_each(three.begin(), three.end(), outint);
+	three.sort();
+	three.unique();
+	cout << endl << "정렬과 단일화 후의 리스트 three: ";
+	for_each(three.begin(), three.end(), outint);
+	two.sort();
+	three.merge(two);
+	cout << endl << "정렬된 리스트 two를 리스트 three에 합병: ";
+	for_each(three.begin(), three.end(), outint);
+	cout << endl;
+
+	return 0;
+}*/
+
+
+
+
