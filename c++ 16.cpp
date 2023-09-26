@@ -564,3 +564,185 @@ int main()
 
 	return 0
 }*/
+
+
+
+/*
+//functor.cpp 16-15 (1304pg)
+template<class T>
+class Toobig
+{
+private:
+	T cutoff;
+public:
+	Toobig(const T& t) : cutoff(t) {}
+	bool operator() (const T& v) { return v > cutoff; }
+};
+
+void outint(int n) { cout << n << " "; }
+int main()
+{
+	Toobig<int>f100(100);
+	int vals[10] = { 50,100,90,180,60,210,415,88,188,201 };
+	list<int>yadayada(vals, vals + 10);
+	list<int>etcetera(vals, vals + 10);
+	cout << "원래의 리스트: \n";
+	for_each(yadayada.begin(), yadayada.end(), outint);
+	cout << endl;
+	for_each(etcetera.begin(), etcetera.end(), outint);
+	cout << endl;
+	yadayada.remove_if(f100);
+	etcetera.remove_if(Toobig<int>(200));
+	cout << "정비된 리스트: \n";
+	for_each(yadayada.begin(), yadayada.end(), outint);
+	cout << endl;
+	for_each(etcetera.begin(), etcetera.end(), outint);
+	cout << endl;
+
+	return 0;
+}*/
+
+
+
+/*
+//funadap.cpp 16-16 (1310pg)
+void show(double);
+const int LIM = 6;
+int main()
+{
+	double arr1[LIM] = { 28,29,30,35,38,59 };
+	double arr2[LIM] = { 63,65,69,75,80,99 };
+	vector<double>gr8(arr1, arr1 + LIM);
+	vector<double>m8(arr2, arr2 + LIM);
+	cout.setf(ios_base::fixed);
+	cout.precision(1);
+	cout << "gr8:\t";
+	for_each(gr8.begin(), gr8.end(), show);
+	cout << endl;
+	cout << "m8:\t";
+	for_each(m8.begin(), m8.end(), show);
+	cout << endl;
+
+	vector<double>sum(LIM);
+	transform(gr8.begin(), gr8.end(), m8.begin(), sum.begin(), plus<double>());
+	cout << "sum:\t";
+	for_each(sum.begin(), sum.end(), show);
+	cout << endl;
+
+	vector<double>prod(LIM);
+	transform(gr8.begin(), gr8.end(), m8.begin(), prod.begin(), bind1st(multiplies<double>(),2.5));
+	cout << "prod:\t";
+	for_each(prod.begin(), prod.end(), show);
+	cout << endl;
+
+	return 0;
+}
+void show(double v)
+{
+	cout.width(6);
+	cout << v << ' ';
+}*/
+
+
+
+
+/*
+//strgst1.cpp 16-17 (1316pg)
+int main()
+{
+	string letters;
+	cout << "글자 그룹을 입력하십시오(끝내려면 quit): ";
+	while (cin>>letters && letters != "quit")
+	{
+		cout << letters << "의 모든 치환들: " << endl;
+		sort(letters.begin(), letters.end());
+		cout << letters << endl;
+		while (next_permutation(letters.begin(), letters.end()))
+			cout << letters << endl;
+		cout << "다음 시퀸스를 입력하십시오(끝내려면 quit): ";
+	}
+	cout<<"프로그램을 종료합니다.\n";
+	return 0;
+}*/
+
+
+
+/*
+//listrmv.cpp 16-18 (1318pg)
+void show(int);
+const int LIM = 10;
+int main()
+{
+	int ar[LIM] = { 4,5,4,2,2,3,4,8,1,4 };
+	list<int>la(ar, ar + LIM);
+	list<int>lb(la);
+	cout << "오리지널 리스트의 내용:\n\t";
+	for_each(la.begin(), la.end(), show);
+	cout << endl;
+	la.remove(4);
+	cout << "remove() 메서드를 사용한 후:\n";
+	cout << "la: \t";
+	for_each(la.begin(), la.end(), show);
+	cout << endl;
+	list<int>::iterator last;
+	last = remove(lb.begin(), lb.end(), 4);
+	cout << "remove() 함수를 사용한 후:\n";
+	cout << "lb: \t";
+	for_each(lb.begin(), lb.end(), show);
+	cout << endl;
+	lb.erase(last, lb.end());
+	cout << "erase() 함수를 사용한 후:\n";
+	cout << "lb: \t";
+	for_each(lb.begin(), lb.end(), show);
+	cout << endl;
+	return 0;
+}
+void show(int v)
+{
+	cout << v << ' ';
+}*/
+
+
+
+/*
+//usealgo.cpp 16-19 (1322pg)
+char toLower(char ch) { return tolower(ch); }
+string& ToLower(string& st);
+void display(const string& s);
+
+int main()
+{
+	vector<string>words;
+	cout << "단어들을 입력하십시오(끝내려면 quit):\n";
+	string input;
+	while (cin >> input && input != "quit")
+		words.push_back(input);
+	cout << "다음과 같은 단어들을 입력하셨습니다.\n";
+	for_each(words.begin(), words.end(), display);
+	cout << endl;
+
+	set<string>wordset;
+	transform(words.begin(), words.end(), insert_iterator<set<string>>(wordset, wordset.begin()), ToLower);
+	cout << "\n단어들의 알파벳순 리스트: \n";
+	for_each(wordset.begin(), wordset.end(), display);
+	cout << endl;
+	map<string, int>wordmap;
+	set<string>::iterator si;
+	for (si = wordset.begin(); si != wordset.end(); si++)
+		cout << *si << ": " << wordmap[*si] << endl;
+
+	return 0;
+}
+string& ToLower(string& st)
+{
+	transform(st.begin(), st.end(), st.begin(), toLower);
+	return st;
+}
+void display(const string& s)
+{
+	cout << s << ' ';
+}*/
+
+
+
+
