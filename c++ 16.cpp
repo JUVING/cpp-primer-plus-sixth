@@ -745,4 +745,119 @@ void display(const string& s)
 
 
 
+/*
+//valvect.cpp 16-20 (1328pg)
+int main()
+{
+	vector<double> data;
+	double temp;
 
+	cout << "수들을 입력하십시오(끝내려면 <=0): \n";
+	while (cin >> temp && temp > 0)
+		data.push_back(temp);
+	sort(data.begin(), data.end());
+	int size = data.size();
+	valarray<double>numbers(size);
+	int i;
+	for (i = 0; i < size; i++)
+		numbers[i] = data[i];
+	valarray<double>sq_rts(size);
+	sq_rts = sqrt(numbers);
+	valarray<double>results(size);
+	results = numbers + 2.0 * sq_rts;
+	cout.setf(ios_base::fixed);
+	cout.precision(4);
+	for (i = 0; i < size; i++)
+	{
+		cout.width(8);
+		cout << numbers[i] << ": ";
+		cout.width(8);
+		cout << results[i] << endl;
+	}
+	cout << "프로그램을 종료합니다.\n";
+	return 0;
+}*/
+
+
+
+/*
+//vslice.cpp 16-21 (1330pg)
+const int SIZE = 12;
+typedef valarray<int>vint;
+void show(const vint & v,int cols);
+
+int main()
+{
+	vint valint(SIZE);
+	int i;
+	for (i = 0; i < SIZE; ++i)
+		valint[i] = rand() % 10;
+	cout << "원래의 배열: \n";
+	show(valint, 3);
+	vint vcol(valint[slice(1, 4, 3)]);
+	cout << "제 2열: \n";
+	show(vcol, 1);
+	vint vrow(valint[slice(3, 3, 1)]);
+	cout << "제 2행: \n";
+	show(vrow, 3);
+	valint[slice(2, 4, 3)] = 10;
+	cout << "마지막 열을 값 10으로 설정:\n";
+	show(valint, 3);
+	cout << "제1열을 그 다음 두열의 합으로 설정: \n";
+	valint[slice(0, 4, 3)] = vint(valint[slice(1, 4, 3)]) + vint(valint[slice(2, 4, 3)]);
+	show(valint, 3);
+	return 0;
+}
+void show(const vint& v, int cols)
+{
+	int lim = v.size();
+	for (int i = 0; i < lim; ++i)
+	{
+		cout.width(3);
+		cout << v[i];
+		if (i % cols == cols - 1)
+			cout << endl;
+		else
+			cout << ' ';
+	}
+	if (lim % cols != 0)
+		cout << endl;
+}*/
+
+
+
+/*
+//ilist.cpp 16-22 (1334pg)
+double sum(initializer_list<double>il);
+double average(const initializer_list<double>ril);
+
+int main()
+{
+	cout << "목록 1 : 합계 = " << sum({ 2,3,4 }) << ", 평균 = " << average({ 2,3,4 }) << '\n';
+	initializer_list<double>dl = { 1.1, 2.2, 3.3, 4.4, 5.5 };
+	cout << "목록 2 : 합계 = " << sum(dl) << ", 평균 = " << average(dl) << '\n';
+	dl = { 16.0, 25.0, 36.0, 40.0, 64.0 };
+	cout << "목록 3 : 합계 = " << sum(dl) << ", 평균 = " << average(dl) << '\n';
+	return 0;
+}
+double sum(initializer_list<double>il)
+{
+	double tot = 0;
+	for (auto p = il.begin(); p != il.end(); p++)
+		tot += *p;
+	return tot;
+
+}
+double average(const initializer_list<double>ril)
+{
+	double tot = 0;
+	int n = ril.size();
+	double ave = 0.0;
+	if (n > 0)
+	{
+		for(auto p = ril.begin(); p != ril.end(); p++)
+			tot += *p;
+		ave = tot / n;
+	}
+	return ave;
+}*/
