@@ -169,4 +169,318 @@ int main()
 
 
 
+/*
+//setf.cpp 17-8 (1377pg)
+int main()
+{
+	int temprature = 63;
+
+	cout << "오늘의 수온: ";
+	cout.setf(ios_base::showpos); //플러스 부호 사용
+	cout << temprature << endl;
+
+	cout << "프로그래머들에게 그 값은\n";
+	cout << hex << temprature << endl;
+	cout.setf(ios_base::uppercase);
+	cout.setf(ios_base::showbase);
+	cout << "또 는\n";
+	cout << temprature << endl;
+	cout << true << "!의 값은 ";
+	cout.setf(ios_base::boolalpha);
+	cout << true << "이다.\n";
+
+	return 0;
+}*/
+
+
+
+
+/*
+//setf2.cpp 17-9 (1380pg)
+int main()
+{
+	cout.setf(ios_base::left, ios_base::adjustfield);
+	cout.setf(ios_base::showpos);
+	cout.setf(ios_base::showpoint);
+	cout.precision(3);
+
+	ios_base::fmtflags old = cout.setf(ios_base::scientific, ios_base::floatfield);
+	cout << "왼쪽 정렬:\n";
+	long n;
+	for (n = 1; n <= 41; n += 10)
+	{
+		cout.width(4);
+		cout << n << "|";
+		cout.width(12);
+		cout << sqrt(double(n)) << "|\n";
+	}
+	cout.setf(ios_base::internal, ios_base::adjustfield);
+	cout.setf(old, ios_base::floatfield);
+	cout << "내부(internal) 정렬:\n";
+	for (n = 1; n <= 41; n += 10)
+	{
+		cout.width(4);
+		cout << n << "|";
+		cout.width(12);
+		cout << sqrt(double(n)) << "|\n";
+	}
+	cout.setf(ios_base::right, ios_base::adjustfield);
+	cout.setf(ios_base::fixed, ios_base::floatfield);
+	cout << "오른쪽 정렬:\n";
+	for (n = 1; n <= 41; n += 10)
+	{
+		cout.width(4);
+		cout << n << "|";
+		cout.width(12);
+		cout << sqrt(double(n)) << "|\n";
+	}
+	return 0;
+}*/
+
+
+/*
+//iomanip.cpp 17-10 (1385PG)
+int main()
+{
+	cout << fixed << right;
+	cout << setw(6) << "N" << setw(14) << "제곱근" << setw(15) << "네제곱근\n";
+
+	double root;
+	for (int n = 10; n <= 100; n += 10)
+	{
+		root = sqrt(double(n));
+		cout << setw(6) << setfill('.') << n << setfill(' ')
+			<< setw(12) << setprecision(3) << root
+			<< setw(14) << setprecision(4) << sqrt(root)
+			<< endl;
+	}
+	return 0;
+}*/
+
+
+
+/*
+//check_it.cpp 17-11 (1390pg)
+int main()
+{
+	cout << "수를 입력하십시오: ";
+	int sum = 0;
+	int input;
+	while (cin >> input)
+	{
+		sum += input;
+	}
+	cout << "마지막으로 입력한 값 = " << input << endl;
+	cout << "합계 = " << sum << endl;
+	return 0;
+}*/
+
+
+
+/*
+//cinexcp.cpp 17-12 (1394pg)
+int main()
+{
+	cin.exceptions(ios_base::failbit);
+	cout << "수를 입력하십시오: ";
+	int sum = 0;
+	int input;
+	try {
+		while (cin >> input)
+		{
+			sum += input;
+		}
+	}
+	catch (ios_base::failure& bf)
+	{
+		cout << bf.what() << endl;
+		cout << "앗 실수!\n";
+	}
+
+	cout << "마지막으로 입력한 값 = " << input << endl;
+	cout << "합계 = " << sum << endl;
+
+	return 0;
+}*/
+
+
+
+/*
+//get_fun.cpp 17-13 (1404pg)
+const int Limit = 255;
+int main()
+{
+	char input[Limit];
+	cout << "getline()이 처리할 문자열을 입력하십시오:\n";
+	cin.getline(input, Limit, '#');
+	cout << "다음과 같이 입력하셨습니다:\n";
+	cout << input << "\n1단계 완료\n";
+
+	char ch;
+	cin.get(ch);
+	cout << "다음 입력 문자는 " << ch << "입니다." << endl;
+
+	if (ch != '\n')
+		cin.ignore(Limit, '#');
+
+	cout << "get()이 처리할 문자열을 입력하십시오:\n";
+	cin.getline(input, Limit, '#');
+	cout << "다음과 같이 입력하셨습니다:\n";
+	cout << input << "\n2단계 완료\n";
+
+	cin.get(ch);
+	cout << "다음 입력 문자는 " << ch << "입니다." << endl;
+
+	return 0;
+}*/
+
+
+
+/*
+//peeker.cpp 17-14 (1409pg)
+int main()
+{
+	char ch;
+
+	while (cin.get(ch)) //EOF에서 종료
+	{
+		if (ch != '#')
+			cout << ch;
+		else
+		{
+			cin.putback(ch);
+			break;
+		}
+	}
+	if (!cin.eof())
+	{
+		cin.get(ch);
+		cout << endl << ch << "은 다음 입력 문자입니다.\n";
+	}
+	else
+	{
+		cout << "파일 끝에 도달했습니다.\n";
+		exit(0);
+	}
+
+	while (cin.peek() != '#')
+	{
+		cin.get(ch);
+		cout << ch;
+	}
+	if (!cin.eof())
+	{
+		cin.get(ch);
+		cout << endl << ch << "은 다음 입력 문자입니다.\n";
+	}
+	else
+		cout << "파일 끝에 도달했습니다.\n";
+
+	return 0;
+}*/
+
+
+
+
+/*
+//truncate.cpp 17-15 (1411pg)
+const int SLEN = 10;
+inline void eatline() { while (cin.get() != '\n') continue; }
+int main()
+{
+	char name[SLEN];
+	char title[SLEN];
+	cout << "이름을 입력하십시오: ";
+	cin.get(name, SLEN);
+	
+	if (cin.peek() != '\n')
+		cout << "죄송합니다. 이름란이 좁아서 " << name << "만 적어 넣었습니다." << endl;
+	
+	eatline();
+	cout << name << "씨! 직위를 입력하십시오: \n";
+	cin.get(title,SLEN);
+
+	if (cin.peek() != '\n')
+		cout << "직위 뒷부분을 잘랐습니다.\n";
+	eatline();
+	cout << "이름: " << name << "\n직위: " << title << endl;
+
+	return 0;
+}*/
+
+
+
+/*
+//fileio.cpp 17-16 (1416pg)
+int main()
+{
+	string filename;
+
+	cout << "새 파일을 위한 이름을 입력하십시오: ";
+	cin >> filename;
+
+	ofstream fout(filename.c_str());
+
+	fout << "비밀번호 노출을 조심하십시오\n";
+	fout << "비밀번호를 입력하십시오: ";
+	float secret;
+	cin >> secret;
+	fout << "귀하의 비밀번호는 " << secret << "입니다.\n";
+	fout.close();
+
+	ifstream fin(filename.c_str());
+	cout << filename << " 파일의 내용은 다음과 같습니다.\n";
+	char ch;
+	while (fin.get(ch))
+		cout << ch;
+	cout << "프로그램을 종료합니다.\n";
+	fin.close();
+
+	return 0;
+}*/
+
+
+
+/*
+//count.cpp 17-17 (1421pg)
+int maia(int argc, char* argv[])
+{
+	if (argc == 1)
+	{
+		cerr << "사용법: " << argv[0] << " filename[s] \n";
+		exit(EXIT_FAILURE);
+	}
+	ifstream fin;
+
+	long count;
+	long total = 0;
+	char ch;
+
+	for (int file = 1; file < argc; file++)
+	{
+		fin.open(argv[file]);
+		if (!fin.is_open())
+		{
+			cerr << argv[file] << " 파일을 열수 없스니다.\n";
+			fin.clear();
+			continue;
+		}
+		count=0;
+		while (fin.get(ch))
+			count++;
+		cout << argv[file] << " 파일에 들어 있는 문자 수는 " << count << "입니다.\n";
+		total += count;
+		fin.clear();
+		fin.close();
+	}
+	cout << "전체 파일에 들어 있는 문자 수는 " << total << "입니다.\n";
+
+	return 0;
+}*/
+
+
+
+
+//
+
 
