@@ -480,7 +480,237 @@ int maia(int argc, char* argv[])
 
 
 
+/*
+//append.cpp 17-18 (1426pg)
+const char* file = "guests.txt";
+int main()
+{
+	char ch;
+	ifstream fin;
+	fin.open(file);
 
-//
+	if (fin.is_open())
+	{
+		cout << file << " 파일의 현재 내용은 다음과 같습니다.\n";
+		while (fin.get(ch))
+			cout << ch;
+		fin.close();
+	}
+
+	ofstream fout(file, ios_base::out | ios_base::app);
+	if (!fout.is_open())
+	{
+		cerr << "출력을 위해 " << file << " 파일을 열 수 없습니다.\n";
+		exit(EXIT_FAILURE);
+	}
+
+	cout << "새로운 손님 이름들을 입력하십시오(끝내려면 빈 줄을 입력) : \n";
+	string name;
+	while (getline(cin, name) && name.size() > 0)
+	{
+		fout << name << endl;
+	}
+	fin.clear();
+	fin.open(file);
+	if (fin.is_open())
+	{
+		cout << file << " 파일의 개정된 내용은 다음과 같습니다.:\n";
+		while (fin.get(ch))
+			cout << ch;
+		fin.close();
+	}
+	cout << "프로그램을 종료합니다.\n";
+
+	return 0;
+}*/
 
 
+
+
+/*
+//binary.cpp 17-19 (1433pg)
+inline void eatline() { while (cin.get() != '\n') continue; }
+struct planet
+{
+	char name[20];
+	double population;
+	double g;
+};
+
+const char* file = "planets.dat";
+
+int main()
+{
+	planet p1;
+	cout << fixed << right;
+
+	ifstream fin;
+	fin.open(file, ios_base::in, ios_base::binary);
+	if (fin.is_open())
+	{
+		cout << file << " 파일의 현재 내용은 다음과 같습니다.\n";
+
+		while (fin.read((char*) &p1, sizeof p1))
+		{
+			cout << setw(20) << p1.name << ": "
+				<< setprecision(0) << setw(12) << p1.population
+				<< setprecision(2) << setw(6) << p1.g << endl;
+		}
+		fin.close();
+	}
+
+	ofstream fout(file, ios_base::out | ios_base::app | ios_base::binary);
+	if (!fout.is_open())
+	{
+		cerr << "출력을 위해 " << file << " 파일을 열 수 없습니다.\n";
+		exit(EXIT_FAILURE);
+	}
+
+	cout << "행성의 이름을 입력하십시오(끝내려면 빈 줄을 입력) : \n";
+	cin.get(p1.name, 20);
+	while (p1.name[0] != '\0')
+	{
+		eatline();
+		cout << "행성의 인구를 입력하시오: ";
+		cin >> p1.population;
+		cout << "행성의 중력 가속도를 입력하십시오: ";
+		cin >> p1.g;
+		eatline();
+		fout.write((char*)&p1, sizeof p1);
+		cout << "행성의 이름을 입력하십시오(끝내려면 빈 줄을 입력) : \n";
+		cin.get(p1.name, 20);
+	}
+	fout.close();
+
+	fin.clear();
+	fin.open(file, ios_base::out | ios_base::app | ios_base::binary);
+	if (fin.is_open())
+	{
+		cout << file << " 파일의 개정된 내용은 다음과 같습니다.:\n";
+		while (fin.read((char*)&p1, sizeof p1))
+		{
+			cout << setw(20) << p1.name << ": "
+				<< setprecision(0) << setw(12) << p1.population
+				<< setprecision(2) << setw(6) << p1.g << endl;
+		}
+		fin.close();
+	}
+	cout << "프로그램을 종료합니다.\n";
+
+	return 0;
+}*/
+
+
+
+
+
+/*
+//random.cpp 17-20 (1443pg)
+const int LIM = 20;
+struct planet
+{
+	char name[LIM];
+	double population;
+	double g;
+};
+
+const char* file = "planets.dat";
+inline void eatline() { while (cin.get() != '\n') continue; }
+int main()
+{
+	planet p1;
+	cout << fixed;
+	fstream finout;
+	finout.open(file, ios_base::in | ios_base::out, ios_base::binary);
+	int ct = 0;
+	if (finout.is_open())
+	{
+		finout.seekg(0);
+		cout << file << " 파일의 현재 내용은 다음과 같습니다.\n";
+
+		while (finout.read((char*)&p1, sizeof p1))
+		{
+			cout << setw(20) << p1.name << ": "
+				<< setprecision(0) << setw(12) << p1.population
+				<< setprecision(2) << setw(6) << p1.g << endl;
+		}
+		if (finout.eof())
+			finout.clear();
+		else
+		{
+			cerr << file << " 파일을 열 수 없습니다.\n";
+			exit(EXIT_FAILURE);
+		}
+		cout << "수정할 레코드 번호를 입력하십시오: ";
+		long rec;
+		cin >> rec;
+		eatline();
+		if (rec < 0 || rec >= ct)
+		{
+			cerr <<"잘못된 레코드 번호입니다.\n";
+			exit(EXIT_FAILURE);
+		}
+		streampos place = rec * sizeof p1;
+		finout.seekg(place);
+		if (finout.fail())
+		{
+			cerr << "잘못된 레코드 번호입니다.\n";
+			exit(EXIT_FAILURE);
+		}
+		finout.read((char*)&p1, sizeof p1);
+		cout << "현재 레코드 번호";
+		cout << setw(20) << p1.name << ": "
+			<< setprecision(0) << setw(12) << p1.population
+			<< setprecision(2) << setw(6) << p1.g << endl;
+
+		if (finout.eof())
+			finout.clear();
+		cout << "행성의 인구를 입력하시오: ";
+		cin >> p1.population;
+		cout << "행성의 중력 가속도를 입력하십시오: ";
+		cin >> p1.g;
+		finout.seekg(place);
+		finout.write((char*)&p1, sizeof p1) << flush;
+		if (finout.fail())
+		{
+			cerr << "에러 발생\n";
+			exit(EXIT_FAILURE);
+		}
+
+		ct = 0;
+		finout.seekg(0);
+		cout << file << " 파일의 개정된 내용은 다음과 같습니다.:\n";
+		while (finout.read((char*)&p1, sizeof p1))
+		{
+			cout << setw(20) << p1.name << ": "
+				<< setprecision(0) << setw(12) << p1.population
+				<< setprecision(2) << setw(6) << p1.g << endl;
+		}
+		finout.close();
+	}
+	cout << "프로그램을 종료합니다.\n";
+
+}*/
+
+
+
+/*
+//strout.cpp 17-21 (1449pg)
+int main()
+{
+	ostringstream outstr;
+
+	string hdisk;
+	cout << "하드디스크의 모델명이 무엇입니까? ";
+	getline(cin, hdisk);
+	int cap;
+	cout << "하드디스크의 용량은 몇 GB입니까? ";
+	cin>>cap;
+
+	outstr << hdisk << " 하드디스크의 용량은"
+		<< cap << "GB입니다. \n";
+	string result = outstr.str();
+	cout << result;
+
+	return 0;
+}*/
